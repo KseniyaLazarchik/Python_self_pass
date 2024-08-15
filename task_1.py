@@ -25,13 +25,20 @@ even_numbers = [num for num in random_numbers if num % 2 == 0]
 odd_numbers = [num for num in random_numbers if num % 2 != 0]
 
 # Calculate the average of even numbers
-avg_even = sum(even_numbers) / len(even_numbers)
+try:
+    avg_even = sum(even_numbers) / len(even_numbers)
+except ZeroDivisionError:
+    avg_even = 0  # If there are no even numbers, set the average to 0
 
 # Calculate the average of odd numbers
-avg_odd = sum(odd_numbers) / len(odd_numbers)
+try:
+    avg_odd = sum(odd_numbers) / len(odd_numbers)
+except ZeroDivisionError:
+    avg_odd = 0  # If there are no odd numbers, set the average to 0
 
 # Print the average of even numbers
 print(f"The average of even numbers is: {avg_even}")
 
 # Print the average of odd numbers
 print(f"The average of odd numbers is: {avg_odd}")
+
