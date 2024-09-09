@@ -25,7 +25,7 @@ class News(Record):
         self.city = city
 
     def publish(self):
-        record = f"News|{self.date}|{self.city}|{self.text}\n"
+        record = f"News\nDate: {self.date}\nCity: 1{self.city}\n{self.text}\n\n"
         self._write_to_file(record)
         return record  # Return the record for reporting
 
@@ -43,19 +43,28 @@ class PrivateAd(Record):
         return (expiration_date - today).days
 
     def publish(self):
-        record = f"Private Ad|{self.date}|{self.expiration_date_str}|{self.days_left} days left|{self.text}\n"
+        record = f"Private Ad\nDate: {self.date}|{self.expiration_date_str}|{self.days_left} days left\n{self.text}\n\n"
         self._write_to_file(record)
         return record  # Return the record for reporting
 
 
-class UniqueRecord(Record):
+class Comment(Record):
     """Class for unique records."""
-    def __init__(self, record_type, data):
-        super().__init__(data)
-        self.record_type = record_type
+    def __init__(self, nickname, text):
+        super().__init__(text)
+        self.nickname = nickname
+        self.words_num = self.words_count()
+
+    def words_count(self):
+        if isinstance(self.text, str):
+            words = self.text.split()
+            return len(words)
+        else:
+            return 0
+
 
     def publish(self):
-        record = f"{self.record_type}|{self.date}|{self.text}\n"
+        record = f"Nickname: {self.nickname}\nDate: {self.date}\n{self.text}\nWords count: {self.words_num}\n\n"
         self._write_to_file(record)
         return record  # Return the record for reporting
 
@@ -69,7 +78,7 @@ def main():
         print("\nSelect the type of record you want to add:")
         print("1. News")
         print("2. Private Ad")
-        print("3. Unique Record")
+        print("3. Comment")
         print("4. Exit")
 
         choice = input("Enter your choice (1/2/3/4): ")
@@ -89,10 +98,10 @@ def main():
             records.append(record)
 
         elif choice == '3':
-            record_type = input("Enter the type of unique record: ")
-            data = input("Enter the data for the unique record: ")
-            unique_record = UniqueRecord(record_type, data)
-            record = unique_record.publish()
+            nickname = input("Enter your nickname: ")
+            text = input("Enter your comment: ")
+            comments = Comment(nickname, text)
+            record = comments.publish()
             records.append(record)
 
         elif choice == '4':
