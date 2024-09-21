@@ -94,51 +94,50 @@ def create_new_sentence(text):
 
 
 def text_normalize(text):
-    """Normalize the text"""
+    """Normalize the text: handle case normalization and fix extra spaces."""
 
-    if type(text) is str:
-        # Delete extra whitespaces and normalize all letter to lowercase
-        text_normal = text.replace('\n', ' ').replace('“', ' “').replace('  ', ' ').lower()
+    if isinstance(text, str):
+        # Replace newlines with spaces, fix extra spaces, and normalize to lowercase
+        text_normal = text.replace('\n', ' ').replace('  ', ' ').lower()
 
-        # Split sentences
+        # Split sentences by period followed by a space
         sentences_split = text_normal.split('. ')
 
-        # Capitalize first words in sentences
+        # Capitalize the first word of each sentence
         sentences = [sentence.strip().capitalize() for sentence in sentences_split]
 
-        # Join sentences
+        # Join the sentences back together
         text_normal = '. '.join(sentences)
 
-        # Add new sentence from create_new_sentence to the text
-        text_new = text_normal + create_new_sentence(text)
-
+        return text_normal
     else:
-        print("Text is not a string.")
-        text_new = None
+        print("Input is not a valid string.")
+        return None
 
-    return text_new
+def new_text_with_sentence(text):
+    text_with_sentence = text_normalize(text) + create_new_sentence(text)
+    return text_with_sentence
 
 
-def fix_misspelling():
-    """Fix misspelling iz with correct is"""
+def fix_misspelling(text):
+    """Fix the misspelling 'iz' with the correct 'is'."""
 
-    # Get the normalized text
-    text_new = text_normalize(text)
+    # First normalize the text using text_normalize
+    normalized_text = text_normalize(text)
 
-    # Fix “iz” with correct “is”, when “iz” surrounded by spaces and special characters
+    # List of replacements to correct "iz" to "is"
     replacements = [
         (' iz ', ' is '),
         ('“iz”', '“is”'),
         ('"iz"', '"is"')
     ]
 
-    # Apply all replacements
-    result = text_new
+    # Apply replacements for each case of misspelling
+    result = normalized_text
     for old, new in replacements:
         result = result.replace(old, new)
 
     return result
-
 
 text = """
  tHis iz your homeWork, copy these Text to variable.
@@ -160,7 +159,9 @@ text = """
 number_of_whitespace_characters(text)
 # Create new sentence
 print(create_new_sentence(text))
-# Text normalize and add new sentence to text
+# Text normalize
 print(text_normalize(text))
+# Text normalize and add new sentence to text
+print(new_text_with_sentence(text))
 # Fix iz to is
-print(fix_misspelling())
+print(fix_misspelling(text))
