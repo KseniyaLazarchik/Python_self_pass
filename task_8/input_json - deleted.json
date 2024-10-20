@@ -1,0 +1,28 @@
+{
+    "News": [
+        {
+            "Date": "2024-09-25 19:10:32",
+            "City": "Washington",
+            "Text": "New Photos From Mars Show NASA Rover Has Holes in Its Wheels.",
+            "Author": "None",
+            "Comments": "Empty"
+        }
+    ],
+    "PrivateAd": [
+        {
+            "Date": "2024-09-22 19:10:32",
+            "Expires": "2024-12-31",
+            "DaysLeft": 99,
+            "Duration": 14,
+            "Text": "This is an ad."
+        }
+    ],
+    "Comment": [
+        {
+            "Nickname": "Johndoe",
+            "Date": "2024-09-22 19:10:32",
+            "Text": "This is a sample comment is it working?",
+            "Day of week": "Monday"
+        }
+    ]
+}
