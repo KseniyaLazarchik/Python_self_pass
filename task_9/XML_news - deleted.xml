@@ -1,0 +1,25 @@
+﻿<Records>
+	<Items>
+		<News text="Replacing my Windows laptop with an Android tablet was surprisingly painless.">
+			<Date>2024-10-25 19:10:32</Date>
+			<City>Warshawa</City>
+			<Author>None</Author>
+			<Comments>Empty</Comments>
+		</News>
+	</Items>
+	<Items>
+		<PrivateAd text="This is an ad2.">
+			<Date>2024-10-31 19:10:32</Date>
+			<Expires>2024-12-31</Expires>
+			<DaysLeft>60</DaysLeft>
+			<Duration>14</Duration>
+		</PrivateAd>
+	</Items>
+	<Items>
+		<Comment text="This is a new sample comment.">
+			<Nickname>Blablabla</Nickname>
+			<Date>2024-09-22 19:10:32</Date>
+			<DayOfWeek>Monday</DayOfWeek>
+		</Comment>
+	</Items>
+</Records>
